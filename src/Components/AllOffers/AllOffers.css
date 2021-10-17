@@ -1,0 +1,16 @@
+.allOffersHeader {
+  margin-bottom: 4rem;
+}
+
+.all-offers-section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: auto;
+  border: 1px solid #e6e6e6;
+  padding: 3rem;
+  box-shadow: -15px 15px 0px 0px #00000045;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: white;
+}

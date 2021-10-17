@@ -1,0 +1,44 @@
+.navbar {
+  width: 100%;
+  background-color: aqua;
+  box-shadow: 0px 3px 5px 1px rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+}
+
+.right-side-navbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.right-side-navbar > p {
+  font-weight: 300 !important;
+  font-size: 18px !important;
+}
+
+.navbar-buttons-section {
+  display: flex;
+}
+
+.navbar-button-container {
+  margin-right: 1rem;
+}
+
+.navbar-login-register-buttons-container {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+a:visit {
+  color: rgb(0, 0, 0);
+}

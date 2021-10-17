@@ -1,0 +1,43 @@
+.button-group {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  border: 1px solid #e6e6e6;
+  padding: 3rem;
+  box-shadow: -15px 15px 0px 0px #00000045;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: white;
+}
+
+.button-group > button {
+  margin-bottom: 1rem;
+}
+
+.button-input-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  align-items: stretch;
+}
+
+.input-field {
+  flex: 1;
+  direction: rtl;
+  margin-left: 1rem !important;
+  background: white;
+}
+
+.input-field > label {
+  text-align: right;
+}
+
+.button-input-section > button {
+  min-width: 120px;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
