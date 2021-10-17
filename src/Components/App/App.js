@@ -12,31 +12,31 @@ import NotFound from '../../pages/NotFound/NotFound'
 function App() {
 
   return (
-      <div className="App">
-        <BrowserRouter>
-          <Navbar />
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
 
-          <div className="main-app-section">
-            <Switch>
-              <Route path="/about" component={About} />
-              <Route
-                path="/" exact
-                component={AllOffers}
-              />
-              <Route
+        <div className="main-app-section">
+          <Switch>
+            <Route path="/about" component={About} />
+            <Route
+              path="/" exact
+              component={AllOffers}
+            />
+            <Route
               path="/AddOffer"
               component={AddHostingOffer}
-              />
-              <Route
+            />
+            <Route
               path="*"
               component={NotFound}
-              />
-            </Switch>
-          </div>
-        </BrowserRouter>
+            />
+          </Switch>
+        </div>
+      </BrowserRouter>
 
-        <Footer />
-      </div>
+      <Footer />
+    </div>
   );
 }
 

@@ -16,9 +16,11 @@ const AddHostingOffer = () => {
 const [hospitalityAmount, setHospitalityAmount] = useState(0)
 const [hospitalityNote, setHospitalityNote] = useState("")
 const [loading, setLoading] = useState(false)
+
 const startLoader = () =>{
   setLoading(true)
 }
+
 const userData = useSelector(state => state.userData)
 const history = useHistory()
 
@@ -41,6 +43,7 @@ const history = useHistory()
       history.push('/')
     }
     catch(e){
+     notifyError('the offer was not processed by the server, please try again later')
      console.log(e) 
     }   
   };
