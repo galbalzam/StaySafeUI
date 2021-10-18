@@ -4,15 +4,16 @@ import Button from "@material-ui/core/Button";
 import { login } from "../../../Services/auth.service";
 import "./Login.css";
 import { useDispatch } from "react-redux";
+import { tempLogin } from "../../../redux/authReducer";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
+  
   const onLoginClick = async () => {
     // const results = await login(username, password);
-    dispatch({ type: "LOGIN", payload: username });
+    dispatch(tempLogin());
   };
 
   return (

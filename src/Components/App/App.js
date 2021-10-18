@@ -5,7 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "../Auth/Login/Login";
 import Register from "../Auth/Register/Register";
-import About from "../About/About";
+import About from "../../pages/About/About";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import config from "../../Services/firebaseConfig";

@@ -19,9 +19,11 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
 
   const onRegisterClick = async () => {
-    // await register(username, password, firstName, lastName, phoneNumber);
+    // await register(username, password, firstName, lastName, phoneNumber, city);
     const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleAuthProvider);
 
@@ -93,6 +95,28 @@ const Register = () => {
                 variant="outlined"
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
+                }}
+              />
+            </div>
+            <div className="inputContainer">
+              <TextField
+                id="register-city-field"
+                label="City"
+                autoComplete="current-password"
+                variant="outlined"
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+              />
+            </div>
+            <div className="inputContainer">
+              <TextField
+                id="register-street-field"
+                label="Street"
+                autoComplete="current-password"
+                variant="outlined"
+                onChange={(e) => {
+                  setStreet(e.target.value);
                 }}
               />
             </div>
