@@ -11,12 +11,12 @@ import "./App.css";
 import config from "../../Services/firebaseConfig";
 import firebase from "firebase/app";
 import "firebase/auth";
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  IfFirebaseAuthed,
-  IfFirebaseAuthedAnd,
-} from "@react-firebase/auth";
+// import {
+//   FirebaseAuthProvider,
+//   FirebaseAuthConsumer,
+//   IfFirebaseAuthed,
+//   IfFirebaseAuthedAnd,
+// } from "@react-firebase/auth";
 import { createStore } from "redux";
 import allReducers from "../../redux/auth.reducer";
 import { Provider } from "react-redux";
