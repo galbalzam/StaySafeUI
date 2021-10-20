@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
-import Login from "../Auth/Login/Login";
+import Login from "../../pages/Login/Login";
+import AuthLanding from "./AuthLanding";
 
 const AuthWrapper = (props) => {
     const authState = useSelector(state => state.userData)
@@ -7,7 +8,7 @@ const AuthWrapper = (props) => {
     if(!authState.isAuthenticated){
         return (
             <div>
-                <Login />
+                <AuthLanding />
             </div>
         )
     }

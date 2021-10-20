@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { sendOfferToStorage } from "../../Services/offers.service";
 import "./HostingSuggestion.css";
 

@@ -1,25 +1,38 @@
-import { combineReducers } from "redux";
+import { createSlice } from '@reduxjs/toolkit'
 
-const initState = {
-  username: "",
-  userID: "",
-};
+const initialState = {
+  email: '',
+  firstName:'',
+  lastName: '',
+  phone: '',
+  city: '',
+  street: '',
+  house: '',
+  isAuthenticated: false,
+}
 
-export const authReducer = (state = initState, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return {
-        ...state,
-        username: action.payload,
-      };
+export const userSlice = createSlice({
+  name: 'userData',
+  initialState,
+  reducers: {
+    login: (state , action) => {
+      const userData = action.payload;
+      state.email = userData.email
+      state.firstName = userData.firstName
+      state.lastName = userData.lastName
+      state.phone = userData.phone
+      state.city = userData.city
+      state.street = userData.street
+      state.isAuthenticated = true
+    },
+    tempLogin: (state) => {
+      state.isAuthenticated = true;
+    },
+    
+  },
+})
 
-    default:
-      return { ...state };
-  }
-};
+// Action creators are generated for each case reducer function
+export const { login,tempLogin } = userSlice.actions
 
-const allReducers = combineReducers({
-  authReducer,
-});
-
-export default allReducers;
+export default userSlice.reducer

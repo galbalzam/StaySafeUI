@@ -3,12 +3,11 @@ import HostingSuggestion from "../HostingSuggestion/HostingSuggestion";
 import AllOffers from "../AllOffers/AllOffers";
 import Navbar from "../Navbar/Navbar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from "../Auth/Login/Login";
-import Register from "../Auth/Register/Register";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 import About from "../../pages/About/About";
 import Footer from "../Footer/Footer";
 import "./App.css";
-import config from "../../Services/firebaseConfig";
 import firebase from "firebase/app";
 import "firebase/auth";
 import {
@@ -21,8 +20,6 @@ import { createStore } from "redux";
 import allReducers from "../../redux/auth.reducer";
 import { Provider } from "react-redux";
 
-// Initialize Firebase
-firebase.initializeApp(config);
 
 function App() {
   const store = createStore(allReducers);
@@ -37,12 +34,9 @@ function App() {
 
           <div className="main-app-section">
             <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
               <Route path="/about" component={About} />
-
               <Route
-                path="/"
+                path="/" exact
                 component={role === "searching" ? AllOffers : HostingSuggestion}
               />
             </Switch>
