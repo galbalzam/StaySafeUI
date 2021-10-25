@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import heart from "../../assets/heart.jpg";
 import "./About.css";
 
-const About = () => {
+const About = (props) => {
   return (
     <div className="aboutPageContainer">
       <div className="aboutHeader">

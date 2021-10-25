@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HostingSuggestion from "../HostingSuggestion/HostingSuggestion";
 import AllOffers from "../AllOffers/AllOffers";
 import Navbar from "../Navbar/Navbar";
@@ -20,11 +20,8 @@ import { createStore } from "redux";
 import allReducers from "../../redux/auth.reducer";
 import { Provider } from "react-redux";
 
-
 function App() {
   const store = createStore(allReducers);
-
-  const [role, setRole] = useState("searching");
 
   return (
     <Provider store={store}>
@@ -34,11 +31,9 @@ function App() {
 
           <div className="main-app-section">
             <Switch>
-              <Route path="/about" component={About} />
-              <Route
-                path="/" exact
-                component={role === "searching" ? AllOffers : HostingSuggestion}
-              />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/" component={AllOffers} />
+              <Route exact path="/hosting" component={HostingSuggestion} />
             </Switch>
           </div>
         </BrowserRouter>
