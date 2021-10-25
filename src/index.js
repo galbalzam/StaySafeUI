@@ -9,13 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 ReactDOM.render(
-  <Provider store={store}>
   <React.StrictMode>
+    <Provider store={store}>
     <AppWrapper />
+  </Provider>
     <ToastContainer />
-  </React.StrictMode>
-  </Provider>,
-
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

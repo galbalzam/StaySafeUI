@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { register } from "../../Services/auth.service";
 import  { Formik, Field, Form, ErrorMessage } from 'formik'
 import "./Register.css";
 import {firebase} from "../../FireBase/initFireBase";
@@ -46,7 +45,6 @@ const Register = (props) => {
         ...userData
       }).then(res => console.log(res));
       dispatch(login(userData))
-      history.push("/About")
     }catch(err){
       console.log(err)
       notify(err.message)

@@ -41,3 +41,11 @@
 h1 {
   margin-bottom: 1rem;
 }
+.hospitality-section{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hospitality-section > label{
+  font-size: 30px;
+}
