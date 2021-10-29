@@ -8,18 +8,22 @@ import { useSelector } from "react-redux"
 
 const Navbar = () => {
   const userData = useSelector(state => state.userData);
-  console.log(userData)
   return (
     <div className="navbar">
       <div className="navbar-buttons-section">
         <div className="navbar-button-container">
           <Button color="primary">
-            <Link to="/">Home</Link>
+            <Link to="/">StaySafe</Link>
           </Button>
         </div>
         <div className="navbar-button-container">
           <Button color="primary">
-            <Link to="/AddOffer">Add New Offer</Link>
+            <Link to="/AddOffer">New Offer</Link>
+          </Button>
+        </div>
+        <div className="navbar-button-container">
+          <Button color="primary">
+            <Link to="/MyOffer">My Offer</Link>
           </Button>
         </div>
         <div className="navbar-button-container">

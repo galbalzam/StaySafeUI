@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
@@ -11,11 +11,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import CircularProgress from '@mui/material/CircularProgress';
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { getAllOffers } from "../../Services/offers.service";
+import { GetAllOffers } from "../../Services/offers.service";
 import "./AllOffers.css";
+import { useQuery } from "react-query";
+import { notifyError } from "../../tostify/toastifyAletrts";
 
 const useRowStyles = makeStyles({
   root: {
@@ -25,7 +28,7 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(hostName, hostingPlace, hostingAmount) {
+function createData(hostName, hostingPlace, hostingAmount, email, phone, offerNote) {
   return {
     hostName,
     hostingPlace,
@@ -33,9 +36,9 @@ function createData(hostName, hostingPlace, hostingAmount) {
     history: [
       {
         id: 0,
-        phoneNumber: "054-123123123",
-        email: "asdasd@gmail.com",
-        hostName,
+        phoneNumber: phone,
+        email: email,
+        offerNote: offerNote,
       },
     ],
   };
@@ -55,12 +58,12 @@ function Row(props) {
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}{" "}
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
 
         <TableCell component="th" scope="row" align="right">
-          {row.hostingAmount}{" "}
+          {row.hostingAmount}
         </TableCell>
 
         <TableCell align="right">{row.hostingPlace}</TableCell>
@@ -90,18 +93,18 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="right">שם</TableCell>
+                    <TableCell align="right">הערות</TableCell>
                     <TableCell align="right">טלפון</TableCell>
                     <TableCell align="right">אימייל</TableCell>
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
-                  {" "}
+                
                   {row.history.map((historyRow) => (
                     <TableRow key={historyRow.id}>
                       <TableCell component="th" scope="row" align="right">
-                        {historyRow.hostName}{" "}
+                        {historyRow.offerNote}
                       </TableCell>
 
                       <TableCell align="right">
@@ -110,7 +113,7 @@ function Row(props) {
 
                       <TableCell align="right">{historyRow.email}</TableCell>
                     </TableRow>
-                  ))}{" "}
+                  ))}
                 </TableBody>
               </Table>
             </Box>
@@ -121,39 +124,33 @@ function Row(props) {
   );
 }
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
+
+const AllOffers = () => {
+  const [rows, setRows] = React.useState([])
+
+  const query = useQuery('AllOffers', GetAllOffers, {
+    onSuccess: (data) => {
+      setRows([])
+      data.forEach(doc => {
+        setRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote)])
       })
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired,
-  }).isRequired,
-};
+    }
+  })
 
-const rows = [
-  createData("Gal", "Tel Aviv", 5),
-  createData("Ben", "Bat yam", 3),
-  createData("Shalon", "Naharia", 2),
-];
-
-export default function AllOffers() {
-  useEffect(() => {
-    const getAllOffersFromServer = async () => {
-      const result = await getAllOffers();
-      alert(result.data);
-    };
-
-    getAllOffersFromServer();
-  }, []);
+  if (query.isLoading || query.isFetching) {
+    return (
+      <div className="all-offers-section">
+        <h1 className="allOffersHeader">רשימת מארחים</h1>
+        <CircularProgress />
+      </div>
+    )
+  }
+  if (query.isError) {
+    notifyError("There has been an error while getting the offers from the server")
+    return (
+      <label>Error</label>
+    )
+  }
 
   return (
     <div className="all-offers-section">
@@ -171,13 +168,14 @@ export default function AllOffers() {
           </TableHead>
 
           <TableBody>
-            {" "}
             {rows.map((row) => (
-              <Row key={row.name} row={row} />
-            ))}{" "}
+              <Row key={row.FullName} row={row} />
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
     </div>
   );
 }
+
+export default AllOffers;

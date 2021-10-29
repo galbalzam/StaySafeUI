@@ -5,6 +5,7 @@
 .all-offers-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 70%;
   margin: auto;
   border: 1px solid #e6e6e6;

@@ -31,7 +31,6 @@ export const FireStoreLogin = async(email, password) =>{
       const querySnapshot = await userDocRef.where("email", "==", email).get()
         querySnapshot.forEach(doc => {
           const tempUserData = doc.data();
-          console.log(tempUserData)
           userData = tempUserData
         })
         return userData
