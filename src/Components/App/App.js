@@ -1,5 +1,5 @@
 import React from "react";
-import AddHostingOffer from "../../pages/HostingSuggestion/HostingSuggestion";
+import CreateHostingSuggestion from "../../pages/CreateHostingSuggestion/CreateHostingSuggestion";
 import AllOffers from "../AllOffers/AllOffers";
 import Navbar from "../Navbar/Navbar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -25,7 +25,7 @@ function App() {
             />
             <Route
               path="/AddOffer"
-              component={AddHostingOffer}
+              component={CreateHostingSuggestion}
             />
             <Route
               path="*"

@@ -4,7 +4,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import LoadingButton from '@mui/lab/LoadingButton';
 import RemoveIcon from '@material-ui/icons/Remove';
-import "./HostingSuggestion.css";
+import "./CreateHostingSuggestion.css";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { notifyError, notifySuccess } from '../../tostify/toastifyAletrts';
@@ -12,7 +12,7 @@ import {AddNewOffer} from '../../Services/offers.service';
 import { useHistory } from "react-router";
 
 
-const AddHostingOffer = () => {
+const CreateHostingSuggestion = () => {
 const [hospitalityAmount, setHospitalityAmount] = useState(0)
 const [hospitalityNote, setHospitalityNote] = useState("")
 const [loading, setLoading] = useState(false)
@@ -29,7 +29,7 @@ const history = useHistory()
       return notifyError('you must have at least 1 hospitality spot available')
     }
     const offerData = {
-      NamedNodeMap : `${userData.firstName} ${userData.lastName}`,
+      FullName : `${userData.firstName} ${userData.lastName}`,
       city : `${userData.city}`,
       street : `${userData.street}`,
       offerNote : hospitalityNote.length === 0 ? "no notes" : hospitalityNote,
@@ -80,4 +80,4 @@ const history = useHistory()
   );
 };
 
-export default AddHostingOffer;
+export default CreateHostingSuggestion;
