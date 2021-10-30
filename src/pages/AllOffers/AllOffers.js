@@ -19,6 +19,8 @@ import { GetAllOffers } from "../../Services/offers.service";
 import "./AllOffers.css";
 import { useQuery } from "react-query";
 import { notifyError } from "../../tostify/toastifyAletrts";
+import TextField from '@mui/material/TextField';
+
 
 const useRowStyles = makeStyles({
   root: {
@@ -87,20 +89,20 @@ function Row(props) {
                 gutterBottom
                 component="div"
               >
-                יצירת קשר
+                Contact details
               </Typography>
 
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell align="right">הערות</TableCell>
-                    <TableCell align="right">טלפון</TableCell>
-                    <TableCell align="right">אימייל</TableCell>
+                    <TableCell align="right">Notes</TableCell>
+                    <TableCell align="right">Phone number</TableCell>
+                    <TableCell align="right">Email</TableCell>
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
-                
+
                   {row.history.map((historyRow) => (
                     <TableRow key={historyRow.id}>
                       <TableCell component="th" scope="row" align="right">
@@ -127,13 +129,26 @@ function Row(props) {
 
 const AllOffers = () => {
   const [rows, setRows] = React.useState([])
-
+  const [unfilteredRows, setUnfilteredRows] = React.useState([])
+  const OnFilter = (event) => {
+    const text = event.target.value;
+    if (text.length > 1) {
+      setRows(prevState => {
+        return prevState.filter(rowData => rowData.hostingPlace.toLowerCase().includes(text.toLowerCase()))
+      })
+    } else {
+      setRows(unfilteredRows)
+    }
+  }
   const query = useQuery('AllOffers', GetAllOffers, {
     onSuccess: (data) => {
       setRows([])
+      setUnfilteredRows([])
       data.forEach(doc => {
+        setUnfilteredRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote)])
         setRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote)])
       })
+
     }
   })
 
@@ -155,6 +170,9 @@ const AllOffers = () => {
   return (
     <div className="all-offers-section">
       <h1 className="allOffersHeader">רשימת מארחים</h1>
+      <div className="Filters-Section">
+        <TextField id="standard-basic" label="City" variant="standard" onChange={(e) => OnFilter(e)} />
+      </div>
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">

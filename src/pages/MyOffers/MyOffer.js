@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardContent, Typography, CircularProgress, Button } from '@mui/material';
 import './MyOffer.css'
 import { useQuery } from 'react-query';
-import { GetMyOffer } from '../../Services/offers.service'
+import { GetMyOffer, deleteOffer } from '../../Services/offers.service'
 import { useSelector } from 'react-redux';
 import AlertDialog from '../../Components/AlertDialog/AlertDialog';
 
@@ -15,7 +15,7 @@ const MyOffer = () => {
     const [open, setOpen] = React.useState(false);
 
 
-    if (myOfferQuery.isLoading) {
+    if (myOfferQuery.isLoading || myOfferQuery.isFetching) {
         return (
             <div className="myoffers-container">
                 <Card sx={{ minWidth: 475 }}>
@@ -31,6 +31,18 @@ const MyOffer = () => {
         return <label>Error</label>
     }
 
+    if (userOffer === undefined) {
+        return (
+            <div className="myoffers-container">
+                <Card sx={{ minWidth: 475 }}>
+                    <CardContent>
+                        <Typography variant="h5" color="text.secondary" gutterBottom>
+                            You Have No Personal Offers Yet
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </div>)
+    }
     return (
         <div className="myoffers-container">
             <Card sx={{ minWidth: 475 }}>
@@ -43,7 +55,7 @@ const MyOffer = () => {
                             city
                         </label>
                         <label>
-                            {userOffer.city} {userOffer.street}
+                            {userOffer?.city} {userOffer?.street}
                         </label>
                     </div>
                     <div className="display-offer-data">
@@ -51,7 +63,7 @@ const MyOffer = () => {
                             contact email
                         </label>
                         <label>
-                            {userOffer.email}
+                            {userOffer?.email}
                         </label>
                     </div>
                     <div className="display-offer-data">
@@ -59,7 +71,7 @@ const MyOffer = () => {
                             hospitality amount
                         </label>
                         <label>
-                            {userOffer.hospitalityAmount}
+                            {userOffer?.hospitalityAmount}
                         </label>
                     </div>
                     <div className="display-offer-data">
@@ -67,11 +79,11 @@ const MyOffer = () => {
                             Note
                         </label>
                         <label>
-                            {userOffer.offerNote}
+                            {userOffer?.offerNote}
                         </label>
                     </div>
                     <Button variant="contained" color="error" onClick={() => setOpen(true)}>Delete Offer</Button>
-                    <AlertDialog open={open} setOpen={setOpen} content={'Are you sure you want to delete your offer? this cannot be undone.'} />
+                    <AlertDialog open={open} setOpen={setOpen} onAcceptAction={() => deleteOffer(userData.email)} content={'Are you sure you want to delete your offer? this cannot be undone.'} />
                 </CardContent>
             </Card>
         </div>

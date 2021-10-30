@@ -8,6 +8,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { loginValidationSchema } from '../../Validation/AuthInputValidation'
 import "firebase/auth";
 import { FireStoreLogin } from '../../Services/auth.service'
+import { notifyError } from '../../tostify/toastifyAletrts';
 
 const initialValues = {
   email: '',
@@ -23,7 +24,9 @@ const Login = (props) => {
 
   const handleSubmit = async (values) => {
     startLoader()
-    FireStoreLogin(values.email, values.password).then(val => dispatch(login(val)))
+    FireStoreLogin(values.email, values.password).then(val => dispatch(login(val))).catch(e => {notifyError("You're not in our database, please register fiirst")
+    setLoading(false)
+  })
   }
 
   return (

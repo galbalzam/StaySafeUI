@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   email: '',
-  firstName:'',
+  firstName: '',
   lastName: '',
   phone: '',
   city: '',
@@ -15,7 +15,7 @@ export const userSlice = createSlice({
   name: 'userData',
   initialState,
   reducers: {
-    login: (state , action) => {
+    login: (state, action) => {
       const userData = action.payload;
       state.email = userData.email
       state.firstName = userData.firstName
@@ -25,14 +25,20 @@ export const userSlice = createSlice({
       state.street = userData.street
       state.isAuthenticated = true
     },
-    tempLogin: (state) => {
-      state.isAuthenticated = true;
+    logout: (state) => {
+      state.email = ''
+      state.firstName = ''
+      state.lastName = ''
+      state.phone = ''
+      state.city = ''
+      state.street = ''
+      state.isAuthenticated = false;
     },
-    
+
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login,tempLogin } = userSlice.actions
+export const { login, logout } = userSlice.actions
 
 export default userSlice.reducer

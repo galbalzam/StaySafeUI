@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Divider from '@mui/material/Divider';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./Navbar.css";
 import "firebase/auth";
@@ -39,7 +40,11 @@ const Navbar = () => {
       </div>
 
       <div className="right-side-navbar">
-        <Typography align="left">Hello {userData.firstName} </Typography>
+        <Typography align="left" style={{marginRight: '10px'}}>Hello {userData.firstName}</Typography>
+        <Divider orientation="vertical" flexItem />
+        <Button color="primary">
+          <Link to="/logout">Log Out</Link>
+        </Button>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import NotFound from "../../pages/NotFound/NotFound";
 import { QueryClient, QueryClientProvider } from "react-query";
 import MyOffer from "../../pages/MyOffers/MyOffer";
 import Phones from "../../pages/Phones/phones";
+import Logout from "../../pages/Logout/Logout";
 const queryClient = new QueryClient();
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <div className="main-app-section">
             <Switch>
               <Route path="/about" exact component={About} />
+              <Route path="/logout" exact component={Logout} />
               <Route path="/" exact component={AllOffers} />
               <Route path="/AddOffer" exact component={CreateHostingSuggestion} />
               <Route path="/MyOffer" exact component={MyOffer} />

@@ -7,13 +7,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AlertDialog = (props) => {
-    const {open , setOpen, content} = props
+    const {open , setOpen, content, onAcceptAction} = props
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
+    const handleClose = (accepted) => {
+        if(accepted){
+            onAcceptAction()
+        }
         setOpen(false);
     };
 
@@ -34,8 +33,8 @@ const AlertDialog = (props) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
+                    <Button onClick={() => handleClose(false)}>Disagree</Button>
+                    <Button onClick={() => handleClose(true)} autoFocus>
                         Agree
                     </Button>
                 </DialogActions>
