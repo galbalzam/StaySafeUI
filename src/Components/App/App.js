@@ -5,15 +5,15 @@ import Navbar from "../Navbar/Navbar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import About from "../../pages/About/About";
 import Footer from "../Footer/Footer";
-import "./App.css"
+import "./App.css";
 import "firebase/auth";
-import NotFound from '../../pages/NotFound/NotFound'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import NotFound from "../../pages/NotFound/NotFound";
+import { QueryClient, QueryClientProvider } from "react-query";
 import MyOffer from "../../pages/MyOffers/MyOffer";
+import Phones from "../../pages/Phones/phones";
 const queryClient = new QueryClient();
 
 function App() {
-
   return (
     <div className="App">
       <QueryClientProvider client={queryClient}>
@@ -22,23 +22,12 @@ function App() {
 
           <div className="main-app-section">
             <Switch>
-              <Route path="/about" component={About} />
-              <Route
-                path="/" exact
-                component={AllOffers}
-              />
-              <Route
-                path="/AddOffer"
-                component={CreateHostingSuggestion}
-              />
-              <Route
-                path="/MyOffer"
-                component={MyOffer}
-              />
-              <Route
-                path="*"
-                component={NotFound}
-              />
+              <Route path="/about" exact component={About} />
+              <Route path="/" exact component={AllOffers} />
+              <Route path="/AddOffer" exact component={CreateHostingSuggestion} />
+              <Route path="/MyOffer" exact component={MyOffer} />
+              <Route path="/contacts" exact component={Phones} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </div>
         </BrowserRouter>

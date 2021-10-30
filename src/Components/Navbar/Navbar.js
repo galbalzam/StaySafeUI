@@ -4,10 +4,10 @@ import Button from "@mui/material/Button";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./Navbar.css";
 import "firebase/auth";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const userData = useSelector(state => state.userData);
+  const userData = useSelector((state) => state.userData);
   return (
     <div className="navbar">
       <div className="navbar-buttons-section">
@@ -28,13 +28,18 @@ const Navbar = () => {
         </div>
         <div className="navbar-button-container">
           <Button color="primary">
+            <Link to="/contacts">Contacts</Link>
+          </Button>
+        </div>
+        <div className="navbar-button-container">
+          <Button color="primary">
             <Link to="/about">About</Link>
           </Button>
         </div>
       </div>
 
       <div className="right-side-navbar">
-        <Typography align="left">hello {userData.firstName} </Typography>
+        <Typography align="left">Hello {userData.firstName} </Typography>
       </div>
     </div>
   );
