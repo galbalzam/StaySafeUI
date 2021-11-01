@@ -9,7 +9,7 @@ import { loginValidationSchema } from '../../Validation/AuthInputValidation'
 import "firebase/auth";
 import { FireStoreLogin } from '../../Services/auth.service'
 import { notifyError } from '../../tostify/toastifyAletrts';
-
+import ForgotPassword from './ForgotPassword'
 const initialValues = {
   email: '',
   password: ''
@@ -42,7 +42,7 @@ const Login = (props) => {
         >
           {(props) => {
             return (
-              <Form>
+              <Form style={{display: 'flex', flexDirection:'column'}}>
                 <Field
                   as={TextField}
                   label="Email"
@@ -72,6 +72,7 @@ const Login = (props) => {
                   fullWidth >
                   Login
                 </LoadingButton>
+                <ForgotPassword/>
               </Form>
             )
           }}
