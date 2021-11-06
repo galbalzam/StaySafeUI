@@ -2,14 +2,14 @@ import React from 'react'
 import { Card, CardContent, Typography, CircularProgress, Button } from '@mui/material';
 import './MyOffer.css'
 import { useQuery } from 'react-query';
-import { GetMyOffer, deleteOffer } from '../../Services/offers.service'
+import { GetOfferByEmail, deleteOffer } from '../../Services/offers.service'
 import { useSelector } from 'react-redux';
 import AlertDialog from '../../Components/AlertDialog/AlertDialog';
 
 const MyOffer = () => {
     const userData = useSelector(state => state.userData)
     const [userOffer, setUserOffer] = React.useState('')
-    const myOfferQuery = useQuery('myOffer', () => GetMyOffer(userData.email), {
+    const myOfferQuery = useQuery('myOffer', () => GetOfferByEmail(userData.email), {
         onSuccess: (data) => setUserOffer(data[0])
     })
     const [open, setOpen] = React.useState(false);

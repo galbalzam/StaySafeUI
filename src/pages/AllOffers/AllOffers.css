@@ -20,3 +20,7 @@
   display: flex;
   justify-content: start;
 }
+
+.dir-rtl{
+  direction: rtl;
+}

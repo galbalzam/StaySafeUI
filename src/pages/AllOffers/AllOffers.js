@@ -20,6 +20,8 @@ import "./AllOffers.css";
 import { useQuery } from "react-query";
 import { notifyError } from "../../tostify/toastifyAletrts";
 import TextField from '@mui/material/TextField';
+import { Button, Link } from "@mui/material";
+import { useHistory } from "react-router";
 
 
 const useRowStyles = makeStyles({
@@ -30,11 +32,14 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(hostName, hostingPlace, hostingAmount, email, phone, offerNote) {
+function createData(hostName, hostingPlace, hostingAmount, email, phone, offerNote, doesNeedHelp, offerHelpNote) {
   return {
     hostName,
     hostingPlace,
     hostingAmount,
+    doesNeedHelp,
+    offerHelpNote,
+    email,
     history: [
       {
         id: 0,
@@ -47,10 +52,11 @@ function createData(hostName, hostingPlace, hostingAmount, email, phone, offerNo
 }
 
 function Row(props) {
+  const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-
+  console.log(row)
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -62,6 +68,13 @@ function Row(props) {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row" align="right">
+          {row.doesNeedHelp ? (
+            <Button onClick={() => history.push(`/offerHelp/${row.email}`)} > Yes </Button>
+          ) : (
+            "לא"
+          )}
         </TableCell>
 
         <TableCell component="th" scope="row" align="right">
@@ -145,8 +158,8 @@ const AllOffers = () => {
       setRows([])
       setUnfilteredRows([])
       data.forEach(doc => {
-        setUnfilteredRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote)])
-        setRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote)])
+        setUnfilteredRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote, doc.doesNeedHelp, doc.offerHelpNote)])
+        setRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote, doc.doesNeedHelp, doc.offerHelpNote)])
       })
 
     }
@@ -178,7 +191,8 @@ const AllOffers = () => {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell />
+              <TableCell className="dir-rtl" />
+              <TableCell className="dir-rtl" align="right">האם יכול לתת סיוע?</TableCell>
               <TableCell align="right">כמות לאירוח</TableCell>
               <TableCell align="right">מקום אירוח</TableCell>
               <TableCell align="right">שם מארח</TableCell>

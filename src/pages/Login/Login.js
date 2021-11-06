@@ -11,8 +11,8 @@ import { FireStoreLogin } from '../../Services/auth.service'
 import { notifyError } from '../../tostify/toastifyAletrts';
 import ForgotPassword from './ForgotPassword'
 const initialValues = {
-  email: '',
-  password: ''
+  email: 'alonbarel221@gmail.com',
+  password: '12345678'
 }
 
 const Login = (props) => {
@@ -24,7 +24,7 @@ const Login = (props) => {
 
   const handleSubmit = async (values) => {
     startLoader()
-    FireStoreLogin(values.email, values.password).then(val => dispatch(login(val))).catch(e => {notifyError("You're not in our database, please register fiirst")
+    FireStoreLogin(values.email, values.password).then(val => dispatch(login(val))).catch(e => {notifyError("You're not in our database, please register first")
     setLoading(false)
   })
   }
