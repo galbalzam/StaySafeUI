@@ -30,6 +30,16 @@ const Navbar = () => {
           </div>
           <div className="navbar-button-container">
             <Button color="primary">
+              <Link to="/contacts">Contacts</Link>
+            </Button>
+          </div>
+          <div className="navbar-button-container">
+            <Button color="primary">
+              <Link to="/about">About</Link>
+            </Button>
+          </div>
+          <div className="navbar-button-container">
+            <Button color="primary">
               <Link to="/editOffers">EDIT OFFERS</Link>
             </Button>
           </div>

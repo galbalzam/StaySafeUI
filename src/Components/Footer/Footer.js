@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="footer-section">
       <div className="footer-inner">
         <Typography align="center">
-          Created by Gal Balzam & Liam Tzror
+          Created by Gal Balzam & Liam Tzror Copyright 2021 ©️
         </Typography>
       </div>
     </div>
