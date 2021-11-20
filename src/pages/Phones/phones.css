@@ -1,0 +1,31 @@
+.phonesPageContainer{
+    width: 60%;
+  margin: auto auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e6e6e6;
+  padding: 3rem;
+  box-shadow: -15px 15px 0px 0px #00000045;
+  border-radius: 10px;
+  margin-top: 1rem;
+  background-color: white;
+}
+
+.phonesContent{
+    width: fit-content;
+    margin: auto;
+    text-align: initial;
+    direction: rtl;
+}
+
+.phonesHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 100%;
+}
+
+.phonesHeader >img{
+    width: 250px;
+}

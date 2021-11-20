@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import LoadingButton from '@mui/lab/LoadingButton';
 import  { Formik, Field, Form, ErrorMessage } from 'formik'
 import "./Register.css";
 import {firebase} from "../../FireBase/initFireBase";
@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import {registerValidationSchema} from '../../Validation/AuthInputValidation'
 import {login} from '../../redux/auth.reducer'
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+
 const initialValues = {
   email: '',
   password: '',
@@ -18,9 +18,15 @@ const initialValues = {
   phone:'',
   city:'',
   street:'',
+  isAdmin: false,
+  isOwner: false,
 }
+
 const Register = (props) => {
-  const history = useHistory()
+  const [loading, setLoading] = useState(false)
+  const startLoader = () => {
+    setLoading(true)
+  }
   const dispatch = useDispatch();
   const notify = (message) => toast.error(message, {
     position: "bottom-right",
@@ -35,6 +41,7 @@ const Register = (props) => {
   const ref = firebase.firestore().collection('users');
 
   const handleSubmit = async(values) =>{
+    startLoader()
     const userData = values;
     try{
       await firebase.auth()
@@ -137,12 +144,13 @@ const Register = (props) => {
                helperText={<ErrorMessage name="street" />}
                error={props.errors.street && props.touched.street}
              />
-        <Button variant="contained" 
-           type="submit"
-           color="primary"
-           fullWidth >
-          Register
-        </Button>
+       <LoadingButton variant="contained"
+                  type="submit"
+                  color="primary"
+                  loading={loading}
+                  fullWidth >
+                  Register!
+                </LoadingButton>
              </Form>
               )
             }}

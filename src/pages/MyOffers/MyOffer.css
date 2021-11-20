@@ -1,0 +1,9 @@
+.myoffers-container{
+    display: flex;
+    justify-content: center;
+}
+.display-offer-data{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}

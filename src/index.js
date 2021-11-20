@@ -11,10 +11,9 @@ import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <AppWrapper />
-  </Provider>
+      <AppWrapper />
+    </Provider>
     <ToastContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
