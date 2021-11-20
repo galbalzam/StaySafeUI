@@ -13,6 +13,7 @@ import MyOffer from "../../pages/MyOffers/MyOffer";
 import Phones from "../../pages/Phones/phones";
 import Logout from "../../pages/Logout/Logout";
 import OfferHelp from "../../pages/OfferHelp/OfferHelp";
+import EditAllOffers from "../../pages/EditAllOffers/EditAllOffers";
 const queryClient = new QueryClient();
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
               <Route path="/offerHelp/:userEmail" component={OfferHelp} />
               <Route path="/AddOffer" component={CreateHostingSuggestion} />
               <Route path="/MyOffer" component={MyOffer} />
+              <Route path="/editOffers" component={EditAllOffers} />
               <Route path="/contacts" component={Phones} />
               <Route path="*" component={NotFound} />
             </Switch>

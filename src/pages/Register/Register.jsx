@@ -18,6 +18,7 @@ const initialValues = {
   phone:'',
   city:'',
   street:'',
+  isAdmin: false
 }
 
 const Register = (props) => {

@@ -160,9 +160,9 @@ const AllOffers = () => {
       data.forEach(doc => {
         setUnfilteredRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote, doc.doesNeedHelp, doc.offerHelpNote)])
         setRows(prev => [...prev, createData(doc.FullName, doc.city, doc.hospitalityAmount, doc.email, doc.phone, doc.offerNote, doc.doesNeedHelp, doc.offerHelpNote)])
-      })
-
-    }
+      })},
+      refetchOnWindowFocus: false,
+      
   })
 
   if (query.isLoading || query.isFetching) {

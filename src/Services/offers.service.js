@@ -33,7 +33,15 @@ export const AddNewOffer = async (offerData) => {
 export const GetAllOffers = async () => {
   const offers = [];
   (await offersRef.get()).docs.forEach(item => {
-    offers.push(item.data())
+    offers.push({ id: item.id, ...item.data() })
   })
   return offers;
+}
+export const UpdateOffer = async (offerData) => {
+  await offersRef.doc(offerData.id).update({
+    ...offerData
+  }).then(res => console.log(res));
+  setTimeout(() => {
+    window.location.reload();
+  }, 1000);
 }

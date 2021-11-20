@@ -9,6 +9,7 @@ const initialState = {
   street: '',
   house: '',
   isAuthenticated: false,
+  isAdmin: false,
 }
 
 export const userSlice = createSlice({
@@ -24,6 +25,7 @@ export const userSlice = createSlice({
       state.city = userData.city
       state.street = userData.street
       state.isAuthenticated = true
+      state.isAdmin = userData.isAdmin
     },
     logout: (state) => {
       state.email = ''
@@ -33,6 +35,7 @@ export const userSlice = createSlice({
       state.city = ''
       state.street = ''
       state.isAuthenticated = false;
+      state.isAdmin = false;
     },
 
   },

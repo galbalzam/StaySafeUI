@@ -13,6 +13,8 @@ import { useHistory } from "react-router";
 import { GetOfferByEmail } from '../../Services/offers.service'
 import { useQuery } from "react-query";
 import range from 'lodash/range';
+import CircularProgress from '@mui/material/CircularProgress';
+
 const CreateHostingSuggestion = () => {
   const [hospitalityAmount, setHospitalityAmount] = useState(0)
   const [hospitalityNote, setHospitalityNote] = useState("")
@@ -78,6 +80,15 @@ const CreateHostingSuggestion = () => {
         }
       })
     }
+  }
+  if (myOfferQuery.isLoading) {
+    return (
+      <div className="hosting-suggestion-section" >
+        <div className="button-group" style={{alignItems: 'center'}}>
+          <CircularProgress />
+        </div>
+      </div>
+    )
   }
   return (
     <div className="hosting-suggestion-section">

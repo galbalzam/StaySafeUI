@@ -32,7 +32,12 @@ export const FireStoreLogin = async (email, password) => {
       querySnapshot.forEach(doc => {
         const tempUserData = doc.data();
         userData = tempUserData
+        if (userData.isAdmin === undefined) {
+          userData.isAdmin = true;
+          userDocRef.doc(doc.id).update({ isAdmin: true })
+        }
       })
+      
       return userData
     }
     else {
