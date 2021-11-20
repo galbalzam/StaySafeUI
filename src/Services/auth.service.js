@@ -32,15 +32,13 @@ export const FireStoreLogin = async (email, password) => {
       querySnapshot.forEach(doc => {
         const tempUserData = doc.data();
         userData = tempUserData
-        if (userData.isAdmin === undefined) {
-          userData.isAdmin = true;
-          userDocRef.doc(doc.id).update({ isAdmin: true })
+        if (userData.isOwner === undefined) {
+          userData.isOwner = true;
+          userDocRef.doc(doc.id).update({ isOwner: true })
         }
-      })
-      
-      return userData
-    }
-    else {
+      });
+      return userData;
+    } else {
       throw new Error('User is not registered');  //
     }
   } catch (err) {
@@ -50,6 +48,28 @@ export const FireStoreLogin = async (email, password) => {
 export const ResetPassword = async (email) => {
   try {
     const res = await firebase.auth().sendPasswordResetEmail(email)
+    return [true, res]
+  } catch (e) {
+    return [false, e.message]
+  }
+}
+export const GetAllUsers = async () => {
+  try {
+    const users = await firebase.firestore().collection('users').get()
+    const usersData = users.docs.map(doc => {
+      return { id: doc.id, ...doc.data() }
+    })
+    return usersData
+  } catch (e) {
+    return e.message
+  }
+}
+export const UpdateUser = async (userData) => {
+  try {
+    const { id } = userData
+    delete userData.id;
+    const userDocRef = firebase.firestore().collection('users')
+    const res = await userDocRef.doc(id).update(userData)
     return [true, res]
   } catch (e) {
     return [false, e.message]

@@ -35,7 +35,16 @@ export const GetAllOffers = async () => {
   (await offersRef.get()).docs.forEach(item => {
     offers.push({ id: item.id, ...item.data() })
   })
-  return offers;
+  const newOffersArray = offers.map(offer => {
+    const timeDiffrance = new Date().getTime() - new Date(offer.createdAt).getTime();
+    const days = Math.floor(timeDiffrance / (1000 * 60 * 60 * 24));
+    if (days > 31) {
+      deleteOffer(offer.email);
+      return;
+    }
+    return offer
+  })
+  return newOffersArray;
 }
 export const UpdateOffer = async (offerData) => {
   await offersRef.doc(offerData.id).update({

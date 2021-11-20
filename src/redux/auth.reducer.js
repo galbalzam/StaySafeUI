@@ -10,6 +10,7 @@ const initialState = {
   house: '',
   isAuthenticated: false,
   isAdmin: false,
+  isOwner: false,
 }
 
 export const userSlice = createSlice({
@@ -18,6 +19,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       const userData = action.payload;
+      console.log(userData)
       state.email = userData.email
       state.firstName = userData.firstName
       state.lastName = userData.lastName
@@ -26,16 +28,18 @@ export const userSlice = createSlice({
       state.street = userData.street
       state.isAuthenticated = true
       state.isAdmin = userData.isAdmin
+      state.isOwner = userData.isOwner
     },
     logout: (state) => {
-      state.email = ''
-      state.firstName = ''
-      state.lastName = ''
-      state.phone = ''
-      state.city = ''
-      state.street = ''
+      state.email = '';
+      state.firstName = '';
+      state.lastName = '';
+      state.phone = '';
+      state.city = '';
+      state.street = '';
       state.isAuthenticated = false;
       state.isAdmin = false;
+      state.isOwner = false;
     },
 
   },

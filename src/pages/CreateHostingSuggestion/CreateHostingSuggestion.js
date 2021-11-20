@@ -14,6 +14,7 @@ import { GetOfferByEmail } from '../../Services/offers.service'
 import { useQuery } from "react-query";
 import range from 'lodash/range';
 import CircularProgress from '@mui/material/CircularProgress';
+import { format } from 'date-fns';
 
 const CreateHostingSuggestion = () => {
   const [hospitalityAmount, setHospitalityAmount] = useState(0)
@@ -25,7 +26,7 @@ const CreateHostingSuggestion = () => {
   const [offerHelpAmmount, setOfferHelpAmmount] = useState(1)
   const [offerHelpNote, setOfferHelpNote] = useState("")
   const [doesNeedHelp, setDoesNeedHelp] = useState(false)
-  const [myOffer, setMyOffer] = useState(false)
+  const [myOffer, setMyOffer] = useState(true)
   const userData = useSelector(state => state.userData)
   const history = useHistory()
   const myOfferQuery = useQuery('myOffer', () => GetOfferByEmail(userData.email), {
@@ -53,7 +54,8 @@ const CreateHostingSuggestion = () => {
       email: userData.email,
       phone: userData.phone,
       doesNeedHelp: doesNeedHelp,
-      offerHelpNote: offerHelpNote.length === 0 && doesNeedHelp ? "לא" : offerHelpNote
+      offerHelpNote: offerHelpNote.length === 0 && doesNeedHelp ? "לא" : offerHelpNote,
+      createdAt: format(new Date(), 'MM/dd/yyyy'),
     }
     console.log(offerData)
     try {
@@ -84,7 +86,7 @@ const CreateHostingSuggestion = () => {
   if (myOfferQuery.isLoading) {
     return (
       <div className="hosting-suggestion-section" >
-        <div className="button-group" style={{alignItems: 'center'}}>
+        <div className="button-group" style={{ alignItems: 'center' }}>
           <CircularProgress />
         </div>
       </div>

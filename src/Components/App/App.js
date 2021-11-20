@@ -14,6 +14,7 @@ import Phones from "../../pages/Phones/phones";
 import Logout from "../../pages/Logout/Logout";
 import OfferHelp from "../../pages/OfferHelp/OfferHelp";
 import EditAllOffers from "../../pages/EditAllOffers/EditAllOffers";
+import { EditUsers } from "../../pages/EditUsers/EditUsers";
 const queryClient = new QueryClient();
 
 function App() {
@@ -25,13 +26,14 @@ function App() {
 
           <div className="main-app-section">
             <Switch>
-              <Route path="/about"  component={About} />
+              <Route path="/about" component={About} />
               <Route path="/logout" component={Logout} />
               <Route path="/" exact component={AllOffers} />
               <Route path="/offerHelp/:userEmail" component={OfferHelp} />
               <Route path="/AddOffer" component={CreateHostingSuggestion} />
               <Route path="/MyOffer" component={MyOffer} />
               <Route path="/editOffers" component={EditAllOffers} />
+              <Route path="/editUsers" component={EditUsers} />
               <Route path="/contacts" component={Phones} />
               <Route path="*" component={NotFound} />
             </Switch>
