@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
 
         <div className="right-side-navbar">
-          <Typography align="left" style={{ marginRight: '10px' }}>Hello {userData.firstName} {userData.lastName}</Typography>
+          <Typography align="left" style={{ marginRight: '10px' }}>Hello {userData.firstName} </Typography>
           <Divider orientation="vertical" flexItem />
           <Button color="primary">
             <Link to="/logout">Log Out</Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
       </div>
 
       <div className="right-side-navbar">
-        <Typography align="left" style={{ marginRight: '10px' }}>Hello {userData.firstName} {userData.lastName}</Typography>
+        <Typography align="left" style={{ marginRight: '10px' }}>Hello {userData.firstName} </Typography>
         <Divider orientation="vertical" flexItem />
         <Button color="primary">
           <Link to="/logout">Log Out</Link>
